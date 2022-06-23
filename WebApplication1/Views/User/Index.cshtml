@@ -1,0 +1,46 @@
+﻿@using WebApplication1.Models.ViewModel
+@using WebApplication1.Data
+@model List<UserViewModel>
+@inject UserManagementContext contxet
+
+<h1>Users</h1>
+
+<a asp-action="Create" class="btn btn-success mb-2">Create New User</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>DateOfBirth</th>
+        <th>Pan</th>
+        <th>Address</th>
+        <th>Gender</th>
+        <th>MobileNumber</th>
+        <th>Email</th>
+        <th>Comments</th>
+        <th>DepartmentRefId</th>
+    </tr>
+
+    @foreach (var userViewModel in Model)
+    {
+        <tr>
+            <td>@userViewModel.Id</td>
+            <td>@userViewModel.FirstName</td>
+            <td>@userViewModel.LastName</td>
+            <td>@userViewModel.DateOfBirth</td>
+            <td>@userViewModel.Pan</td>
+            <td>@userViewModel.Address</td>
+            <td>@userViewModel.Gender</td>
+            <td>@userViewModel.MobileNumber</td>
+            <td>@userViewModel.Email</td>
+            <td>@userViewModel.Comments</td>
+            <td>@userViewModel.DepartmentRef.Name</td>
+            <td>
+                <a asp-controller="User" asp-action="Details" asp-route-id="@userViewModel.Id" class="btn btn-primary">Details</a>
+                <a asp-controller="User" asp-action="Edit" asp-route-id="@userViewModel.Id" class="btn btn-warning">Edit</a>
+                <a asp-controller="User" asp-action="Delete" asp-route-id="@userViewModel.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

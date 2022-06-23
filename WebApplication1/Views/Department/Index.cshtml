@@ -1,0 +1,28 @@
+﻿@using WebApplication1.Models.ViewModel
+@model List<DepartmentViewModel>
+
+<h1>Departments</h1>
+
+<a asp-action="Create" class="btn btn-success mb-2">Create New Department</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (var departmentViewModel in Model)
+    {
+        <tr>
+            <td>@departmentViewModel.Id</td>
+            <td>@departmentViewModel.Name</td>
+            <td>@departmentViewModel.Description</td>
+            <td>
+                <a asp-controller="Department" asp-action="Details" asp-route-id="@departmentViewModel.Id" class="btn btn-primary">Details</a>
+                <a asp-controller="Department" asp-action="Edit" asp-route-id="@departmentViewModel.Id" class="btn btn-warning">Edit</a>
+                <a asp-controller="Department" asp-action="Delete" asp-route-id="@departmentViewModel.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
